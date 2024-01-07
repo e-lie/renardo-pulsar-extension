@@ -1,6 +1,6 @@
 import { CompositeDisposable } from 'atom';
 import autocomplete from './autocomplete';
-import { FoxDot } from './foxdot';
+import { FoxDot } from './renardo';
 import { LoggerInWorkspace, LOGGER_IN_WORKSPACE_URI } from './logging';
 
 let foxDot: FoxDot | undefined;
