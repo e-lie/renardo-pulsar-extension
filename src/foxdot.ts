@@ -165,7 +165,7 @@ export class FoxDot extends EventEmitter {
 
 		const marker = editor.markBufferRange(range);
 		editor.decorateMarker(marker, {
-			class: 'foxdot-flash',
+			class: 'renardo-flash',
 			type: 'highlight',
 		});
 		setTimeout(() => {
