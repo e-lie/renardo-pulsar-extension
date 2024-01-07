@@ -18,7 +18,8 @@ export class FoxDot extends EventEmitter {
 			'foxdot.samplesDirectory'
 		) as string;
 
-		let command = ['-m', 'FoxDot', '--pipe'];
+		let command = ['-m', 'renardo_lib', '--pipe'];
+
 		if (samplesDirectory !== '') {
 			logger?.service(`Using samples from ${samplesDirectory}.`, false);
 			command = command.concat(['-d', samplesDirectory]);
