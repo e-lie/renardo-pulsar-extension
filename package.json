@@ -3,13 +3,13 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "version": "1.3.0",
-  "description": "FoxDot interface for Atom.",
+  "description": "Renardo interface for Pulsar.",
   "keywords": [
     "algorave",
     "livecoding",
     "supercollider"
   ],
-  "repository": "https://github.com/KoltesDigital/atom-foxdot",
+  "repository": "https://github.com/e-lie/renardo-pulsar-extension",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"

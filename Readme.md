@@ -1,6 +1,6 @@
-# FoxDot interface for Atom
+# Renardo interface for Pulsar
 
-See [FoxDot's repository](https://github.com/Qirky/FoxDot) for installation and usage instructions.
+See [Renardo's repository](https://github.com/e-lie/renardo) for installation and usage instructions.
 
 It basically works like the native interface, with some extras:
 
@@ -12,7 +12,7 @@ It basically works like the native interface, with some extras:
 
 This only works in the scope of python files.
 
-**Toggle FoxDot** (`ctrl-alt-f`) in order to start it.
+**Toggle Renardo** (`ctrl-alt-f`) in order to start it.
 
 ## Key bindings
 

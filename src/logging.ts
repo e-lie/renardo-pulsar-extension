@@ -36,7 +36,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	getTitle() {
-		return this.terminated ? 'FoxDot (Terminated)' : 'FoxDot';
+		return this.terminated ? 'Renardo (Terminated)' : 'Renardo';
 	}
 
 	getURI() {

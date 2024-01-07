@@ -46,7 +46,7 @@ export class FoxDot extends EventEmitter {
 			this.childProcess.on('error', (err: Error & { code?: unknown }) => {
 				if (err.code === 'ENOENT') {
 					logger?.service(
-						`Python was not found. Check that you have Python installed. You may need to give the full path to the Python executable in the FoxDot package's settings.`,
+						`Python was not found. Check that you have Python installed. You may need to give the full path to the Python executable in the Renardo package's settings.`,
 						true
 					);
 				}
@@ -55,16 +55,16 @@ export class FoxDot extends EventEmitter {
 
 			this.childProcess.on('close', (code) => {
 				if (code) {
-					logger?.service(`FoxDot has exited with code ${code}.`, true);
+					logger?.service(`Renardo has exited with code ${code}.`, true);
 				} else {
-					logger?.service('FoxDot has stopped.', false);
+					logger?.service('Renardo has stopped.', false);
 				}
 
 				this.childProcess = undefined;
 				this.emit('stop');
 			});
 
-			logger?.service('FoxDot has started.', false);
+			logger?.service('Renardo has started.', false);
 		} catch (err: unknown) {
 			if (err instanceof Error) {
 				logger?.service(err.toString(), true);
