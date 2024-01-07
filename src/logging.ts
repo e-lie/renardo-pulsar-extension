@@ -16,7 +16,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 
 	constructor() {
 		this.element = document.createElement('div');
-		this.element.classList.add('foxdot-logger', 'native-key-bindings');
+		this.element.classList.add('renardo-logger', 'native-key-bindings');
 		this.element.setAttribute('tabindex', '-1');
 		this.element.setAttribute('style', 'overflow-y: scroll;');
 
