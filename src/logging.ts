@@ -7,7 +7,7 @@ export interface Logger {
 	stderr(message: string): void;
 }
 
-export const LOGGER_IN_WORKSPACE_URI = 'atom://foxdot/logger';
+export const LOGGER_IN_WORKSPACE_URI = 'atom://renardo/logger';
 
 export class LoggerInWorkspace implements Logger, ViewModel {
 	readonly element: HTMLDivElement;
@@ -63,7 +63,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	service(message: string, error: boolean) {
-		if (!atom.config.get('foxdot.logging.logServiceMessages')) {
+		if (!atom.config.get('renardo.logging.logServiceMessages')) {
 			return;
 		}
 
@@ -75,7 +75,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	stdin(message: string) {
-		if (!atom.config.get('foxdot.logging.logStdin')) {
+		if (!atom.config.get('renardo.logging.logStdin')) {
 			return;
 		}
 
@@ -87,7 +87,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	stdout(message: string) {
-		if (!atom.config.get('foxdot.logging.logStdout')) {
+		if (!atom.config.get('renardo.logging.logStdout')) {
 			return;
 		}
 
@@ -99,7 +99,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	stderr(message: string) {
-		if (!atom.config.get('foxdot.logging.logStderr')) {
+		if (!atom.config.get('renardo.logging.logStderr')) {
 			return;
 		}
 

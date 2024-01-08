@@ -118,7 +118,7 @@
     "description": "If data is a list, returns Pattern(data). If data is a tuple, returns PGroup(data).\n        Returns data if neither."
   },
   {
-    "text": "FoxDotCode",
+    "text": "RenardoCode",
     "type": "class"
   },
   {

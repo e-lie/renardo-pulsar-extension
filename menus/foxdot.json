@@ -2,33 +2,33 @@
   "context-menu": {
     "atom-text-editor": [
       {
-        "label": "FoxDot",
+        "label": "Renardo",
         "submenu": [
           {
             "label": "Toggle",
-            "command": "foxdot:toggle"
+            "command": "renardo:toggle"
           },
           {
             "type": "separator"
           },
           {
             "label": "Evaluate file",
-            "command": "foxdot:evaluate-file"
+            "command": "renardo:evaluate-file"
           },
           {
             "label": "Evaluate block(s)",
-            "command": "foxdot:evaluate-blocks"
+            "command": "renardo:evaluate-blocks"
           },
           {
             "label": "Evaluate line(s)",
-            "command": "foxdot:evaluate-lines"
+            "command": "renardo:evaluate-lines"
           },
           {
             "type": "separator"
           },
           {
             "label": "Clear clock",
-            "command": "foxdot:clear-clock"
+            "command": "renardo:clear-clock"
           }
         ]
       }
@@ -39,33 +39,33 @@
       "label": "Packages",
       "submenu": [
         {
-          "label": "FoxDot",
+          "label": "Renardo",
           "submenu": [
             {
               "label": "Toggle",
-              "command": "foxdot:toggle"
+              "command": "renardo:toggle"
             },
             {
               "type": "separator"
             },
             {
               "label": "Evaluate file",
-              "command": "foxdot:evaluate-file"
+              "command": "renardo:evaluate-file"
             },
             {
               "label": "Evaluate block(s)",
-              "command": "foxdot:evaluate-blocks"
+              "command": "renardo:evaluate-blocks"
             },
             {
               "label": "Evaluate line(s)",
-              "command": "foxdot:evaluate-lines"
+              "command": "renardo:evaluate-lines"
             },
             {
               "type": "separator"
             },
             {
               "label": "Clear clock",
-              "command": "foxdot:clear-clock"
+              "command": "renardo:clear-clock"
             }
           ]
         }

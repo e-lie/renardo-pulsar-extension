@@ -1,30 +1,30 @@
 import { CompositeDisposable } from 'atom';
 import autocomplete from './autocomplete';
-import { FoxDot } from './renardo';
+import { Renardo } from './renardo';
 import { LoggerInWorkspace, LOGGER_IN_WORKSPACE_URI } from './logging';
 
-let foxDot: FoxDot | undefined;
+let renardo: Renardo | undefined;
 let logger: LoggerInWorkspace | undefined;
 let subscriptions: CompositeDisposable | undefined;
 
 function start() {
 	autocomplete.enabled = true;
 
-	if (atom.config.get('foxdot.logging.enabled')) {
+	if (atom.config.get('renardo.logging.enabled')) {
 		logger = new LoggerInWorkspace();
 	}
 
-	foxDot = new FoxDot(logger);
-	foxDot.on('stop', () => {
+	renardo = new Renardo(logger);
+	renardo.on('stop', () => {
 		logger?.setTerminated();
 
-		foxDot = undefined;
+		renardo = undefined;
 		logger = undefined;
 	});
 }
 
 function stop() {
-	foxDot?.dispose();
+	renardo?.dispose();
 
 	autocomplete.enabled = false;
 }
@@ -85,36 +85,36 @@ export function activate() {
 		}),
 
 		atom.commands.add('atom-workspace', {
-			'foxdot:clear-clock': (event) => {
-				if (!foxDot) {
+			'renardo:clear-clock': (event) => {
+				if (!renardo) {
 					return event.abortKeyBinding();
 				} else {
-					foxDot.clearClock();
+					renardo.clearClock();
 				}
 			},
-			'foxdot:evaluate-blocks': (event) => {
-				if (!foxDot) {
+			'renardo:evaluate-blocks': (event) => {
+				if (!renardo) {
 					return event.abortKeyBinding();
 				} else {
-					foxDot.evaluateBlocks();
+					renardo.evaluateBlocks();
 				}
 			},
-			'foxdot:evaluate-file': (event) => {
-				if (!foxDot) {
+			'renardo:evaluate-file': (event) => {
+				if (!renardo) {
 					return event.abortKeyBinding();
 				} else {
-					foxDot.evaluateFile();
+					renardo.evaluateFile();
 				}
 			},
-			'foxdot:evaluate-lines': (event) => {
-				if (!foxDot) {
+			'renardo:evaluate-lines': (event) => {
+				if (!renardo) {
 					return event.abortKeyBinding();
 				} else {
-					foxDot.evaluateLines();
+					renardo.evaluateLines();
 				}
 			},
-			'foxdot:toggle': () => {
-				if (!foxDot) {
+			'renardo:toggle': () => {
+				if (!renardo) {
 					start();
 				} else {
 					stop();

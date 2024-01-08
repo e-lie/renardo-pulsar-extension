@@ -3,7 +3,7 @@ import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
 import { EventEmitter } from 'events';
 import { Logger } from './logging';
 
-export class FoxDot extends EventEmitter {
+export class Renardo extends EventEmitter {
 	childProcess?: ChildProcessWithoutNullStreams;
 	logger?: Logger;
 
@@ -13,9 +13,9 @@ export class FoxDot extends EventEmitter {
 		this.logger = logger;
 
 		const pythonPath =
-			(atom.config.get('foxdot.pythonPath') as string) || 'python';
+			(atom.config.get('renardo.pythonPath') as string) || 'python';
 		const samplesDirectory = atom.config.get(
-			'foxdot.samplesDirectory'
+			'renardo.samplesDirectory'
 		) as string;
 
 		let command = ['-m', 'renardo_lib', '--pipe'];
@@ -29,7 +29,7 @@ export class FoxDot extends EventEmitter {
 			this.childProcess = spawn(pythonPath, command, {
 				env: {
 					...process.env,
-					SC3_PLUGINS: (atom.config.get('foxdot.useSC3Plugins') as boolean)
+					SC3_PLUGINS: (atom.config.get('renardo.useSC3Plugins') as boolean)
 						? '1'
 						: undefined,
 				},
