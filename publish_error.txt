@@ -1,0 +1,3 @@
+Registering pulsardo ✓
+Publishing pulsardo@1.3.1 ✗
+Creating new version failed: Server Error: From Bad Repo
