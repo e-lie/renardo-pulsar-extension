@@ -18,7 +18,7 @@ export class Renardo extends EventEmitter {
 			'renardo.samplesDirectory'
 		) as string;
 
-		let command = ['-m', 'renardo_lib', '--pipe'];
+		let command = ['-m', 'renardo', '--pipe'];
 
 		if (samplesDirectory !== '') {
 			logger?.service(`Using samples from ${samplesDirectory}.`, false);
