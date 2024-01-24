@@ -2,33 +2,33 @@
   "context-menu": {
     "atom-text-editor": [
       {
-        "label": "Renardo",
+        "label": "Renardoo",
         "submenu": [
           {
             "label": "Toggle",
-            "command": "renardo:toggle"
+            "command": "renardoo:toggle"
           },
           {
             "type": "separator"
           },
           {
             "label": "Evaluate file",
-            "command": "renardo:evaluate-file"
+            "command": "renardoo:evaluate-file"
           },
           {
             "label": "Evaluate block(s)",
-            "command": "renardo:evaluate-blocks"
+            "command": "renardoo:evaluate-blocks"
           },
           {
             "label": "Evaluate line(s)",
-            "command": "renardo:evaluate-lines"
+            "command": "renardoo:evaluate-lines"
           },
           {
             "type": "separator"
           },
           {
             "label": "Clear clock",
-            "command": "renardo:clear-clock"
+            "command": "renardoo:clear-clock"
           }
         ]
       }
@@ -39,33 +39,33 @@
       "label": "Packages",
       "submenu": [
         {
-          "label": "Renardo",
+          "label": "Renardoo",
           "submenu": [
             {
               "label": "Toggle",
-              "command": "renardo:toggle"
+              "command": "renardoo:toggle"
             },
             {
               "type": "separator"
             },
             {
               "label": "Evaluate file",
-              "command": "renardo:evaluate-file"
+              "command": "renardoo:evaluate-file"
             },
             {
               "label": "Evaluate block(s)",
-              "command": "renardo:evaluate-blocks"
+              "command": "renardoo:evaluate-blocks"
             },
             {
               "label": "Evaluate line(s)",
-              "command": "renardo:evaluate-lines"
+              "command": "renardoo:evaluate-lines"
             },
             {
               "type": "separator"
             },
             {
               "label": "Clear clock",
-              "command": "renardo:clear-clock"
+              "command": "renardoo:clear-clock"
             }
           ]
         }

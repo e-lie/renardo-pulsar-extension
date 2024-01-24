@@ -1,30 +1,30 @@
 import { CompositeDisposable } from 'atom';
 import autocomplete from './autocomplete';
-import { Renardo } from './renardo';
+import { Renardoo } from './renardoo';
 import { LoggerInWorkspace, LOGGER_IN_WORKSPACE_URI } from './logging';
 
-let renardo: Renardo | undefined;
+let renardoo: Renardoo | undefined;
 let logger: LoggerInWorkspace | undefined;
 let subscriptions: CompositeDisposable | undefined;
 
 function start() {
 	autocomplete.enabled = true;
 
-	if (atom.config.get('renardo.logging.enabled')) {
+	if (atom.config.get('renardoo.logging.enabled')) {
 		logger = new LoggerInWorkspace();
 	}
 
-	renardo = new Renardo(logger);
-	renardo.on('stop', () => {
+	renardoo = new Renardoo(logger);
+	renardoo.on('stop', () => {
 		logger?.setTerminated();
 
-		renardo = undefined;
+		renardoo = undefined;
 		logger = undefined;
 	});
 }
 
 function stop() {
-	renardo?.dispose();
+	renardoo?.dispose();
 
 	autocomplete.enabled = false;
 }
@@ -65,12 +65,12 @@ export const config = {
 	samplesDirectory: {
 		default: '',
 		description:
-			'Use an alternate directory for looking up samples (restart Renardo session to take effect).',
+			'Use an alternate directory for looking up samples (restart Renardoo session to take effect).',
 		type: 'string',
 	},
 	useSC3Plugins: {
 		default: false,
-		description: 'Use SC3 plugins (restart Renardo session to take effect).',
+		description: 'Use SC3 plugins (restart Renardoo session to take effect).',
 		type: 'boolean',
 	},
 };
@@ -85,36 +85,36 @@ export function activate() {
 		}),
 
 		atom.commands.add('atom-workspace', {
-			'renardo:clear-clock': (event) => {
-				if (!renardo) {
+			'renardoo:clear-clock': (event) => {
+				if (!renardoo) {
 					return event.abortKeyBinding();
 				} else {
-					renardo.clearClock();
+					renardoo.clearClock();
 				}
 			},
-			'renardo:evaluate-blocks': (event) => {
-				if (!renardo) {
+			'renardoo:evaluate-blocks': (event) => {
+				if (!renardoo) {
 					return event.abortKeyBinding();
 				} else {
-					renardo.evaluateBlocks();
+					renardoo.evaluateBlocks();
 				}
 			},
-			'renardo:evaluate-file': (event) => {
-				if (!renardo) {
+			'renardoo:evaluate-file': (event) => {
+				if (!renardoo) {
 					return event.abortKeyBinding();
 				} else {
-					renardo.evaluateFile();
+					renardoo.evaluateFile();
 				}
 			},
-			'renardo:evaluate-lines': (event) => {
-				if (!renardo) {
+			'renardoo:evaluate-lines': (event) => {
+				if (!renardoo) {
 					return event.abortKeyBinding();
 				} else {
-					renardo.evaluateLines();
+					renardoo.evaluateLines();
 				}
 			},
-			'renardo:toggle': () => {
-				if (!renardo) {
+			'renardoo:toggle': () => {
+				if (!renardoo) {
 					start();
 				} else {
 					stop();

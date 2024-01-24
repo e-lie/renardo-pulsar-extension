@@ -1,9 +1,9 @@
 {
-  "name": "renardo",
+  "name": "renardoo",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "version": "1.3.1",
-  "description": "Renardo interface for Pulsar.",
+  "description": "Renardo livecoding interface for Pulsar.",
   "keywords": [
     "algorave",
     "livecoding",

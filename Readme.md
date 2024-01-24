@@ -1,6 +1,6 @@
-# Renardo interface for Pulsar
+# Renardoo interface for Pulsar
 
-See [Renardo's repository](https://github.com/e-lie/renardo) for installation and usage instructions.
+See [Renardoo's repository](https://github.com/e-lie/renardo) for installation and usage instructions.
 
 It basically works like the native interface, with some extras:
 
@@ -12,7 +12,7 @@ It basically works like the native interface, with some extras:
 
 This only works in the scope of python files.
 
-**Toggle Renardo** (`ctrl-alt-f`) in order to start it.
+**Toggle Renardoo** (`ctrl-alt-f`) in order to start it.
 
 ## Key bindings
 

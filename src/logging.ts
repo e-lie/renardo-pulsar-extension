@@ -7,7 +7,7 @@ export interface Logger {
 	stderr(message: string): void;
 }
 
-export const LOGGER_IN_WORKSPACE_URI = 'atom://renardo/logger';
+export const LOGGER_IN_WORKSPACE_URI = 'atom://renardoo/logger';
 
 export class LoggerInWorkspace implements Logger, ViewModel {
 	readonly element: HTMLDivElement;
@@ -16,7 +16,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 
 	constructor() {
 		this.element = document.createElement('div');
-		this.element.classList.add('renardo-logger', 'native-key-bindings');
+		this.element.classList.add('renardoo-logger', 'native-key-bindings');
 		this.element.setAttribute('tabindex', '-1');
 		this.element.setAttribute('style', 'overflow-y: scroll;');
 
@@ -36,7 +36,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	getTitle() {
-		return this.terminated ? 'Renardo (Terminated)' : 'Renardo';
+		return this.terminated ? 'Renardoo (Terminated)' : 'Renardoo';
 	}
 
 	getURI() {
@@ -63,7 +63,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	service(message: string, error: boolean) {
-		if (!atom.config.get('renardo.logging.logServiceMessages')) {
+		if (!atom.config.get('renardoo.logging.logServiceMessages')) {
 			return;
 		}
 
@@ -75,7 +75,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	stdin(message: string) {
-		if (!atom.config.get('renardo.logging.logStdin')) {
+		if (!atom.config.get('renardoo.logging.logStdin')) {
 			return;
 		}
 
@@ -87,7 +87,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	stdout(message: string) {
-		if (!atom.config.get('renardo.logging.logStdout')) {
+		if (!atom.config.get('renardoo.logging.logStdout')) {
 			return;
 		}
 
@@ -99,7 +99,7 @@ export class LoggerInWorkspace implements Logger, ViewModel {
 	}
 
 	stderr(message: string) {
-		if (!atom.config.get('renardo.logging.logStderr')) {
+		if (!atom.config.get('renardoo.logging.logStderr')) {
 			return;
 		}
 
