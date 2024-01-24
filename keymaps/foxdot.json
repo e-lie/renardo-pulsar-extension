@@ -1,9 +1,9 @@
 {
   ".workspace .editor[data-grammar='source python']": {
-    "ctrl-alt-f": "renardoo:toggle",
-    "ctrl-enter": "renardoo:evaluate-blocks",
-    "ctrl-alt-enter": "renardoo:evaluate-file",
-    "alt-enter": "renardoo:evaluate-lines",
-    "ctrl-.": "renardoo:clear-clock"
+    "ctrl-alt-f": "pulsardo:toggle",
+    "ctrl-enter": "pulsardo:evaluate-blocks",
+    "ctrl-alt-enter": "pulsardo:evaluate-file",
+    "alt-enter": "pulsardo:evaluate-lines",
+    "ctrl-.": "pulsardo:clear-clock"
   }
 }

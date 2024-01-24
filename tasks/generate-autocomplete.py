@@ -1,5 +1,5 @@
 import json
-import Renardoo
+import Pulsardo
 from operator import itemgetter
 
 constants = [
@@ -43,22 +43,22 @@ def make_suggestion(name, type, container=None):
 			suggestion['description'] = doc.strip()
 	return suggestion
 
-suggestions.extend([make_suggestion(name, 'constant', Renardoo) for name in constants])
-suggestions.extend([make_suggestion(name, 'function', Renardoo) for name in functions])
+suggestions.extend([make_suggestion(name, 'constant', Pulsardo) for name in constants])
+suggestions.extend([make_suggestion(name, 'function', Pulsardo) for name in functions])
 suggestions.extend([make_suggestion(name, 'keyword') for name in keywords])
 suggestions.extend([make_suggestion(name, 'variable') for name in variables])
 
-suggestions.extend([make_suggestion(name, 'class', Renardoo) for name in Renardoo.Code.classes(Renardoo)])
-suggestions.extend([make_suggestion(name, 'class', Renardoo.Patterns.Generators) for name in Renardoo.Code.classes(Renardoo.Patterns.Generators)])
-suggestions.extend([make_suggestion(name, 'class', Renardoo.Patterns.Main) for name in Renardoo.Code.classes(Renardoo.Patterns.Main)])
-suggestions.extend([make_suggestion(name, 'function', Renardoo.Patterns.Sequences) for name in Renardoo.Code.functions(Renardoo.Patterns.Sequences)])
-suggestions.extend([make_suggestion(name, 'method') for name in dir(Renardoo.Player) if callable(getattr(Renardoo.Player, name)) and name[0].islower()])
-suggestions.extend([make_suggestion(name, 'property') for name in Renardoo.Player.Attributes()])
+suggestions.extend([make_suggestion(name, 'class', Pulsardo) for name in Pulsardo.Code.classes(Pulsardo)])
+suggestions.extend([make_suggestion(name, 'class', Pulsardo.Patterns.Generators) for name in Pulsardo.Code.classes(Pulsardo.Patterns.Generators)])
+suggestions.extend([make_suggestion(name, 'class', Pulsardo.Patterns.Main) for name in Pulsardo.Code.classes(Pulsardo.Patterns.Main)])
+suggestions.extend([make_suggestion(name, 'function', Pulsardo.Patterns.Sequences) for name in Pulsardo.Code.functions(Pulsardo.Patterns.Sequences)])
+suggestions.extend([make_suggestion(name, 'method') for name in dir(Pulsardo.Player) if callable(getattr(Pulsardo.Player, name)) and name[0].islower()])
+suggestions.extend([make_suggestion(name, 'property') for name in Pulsardo.Player.Attributes()])
 
-suggestions.extend([make_suggestion(name, 'function', Renardoo) for name in Renardoo.SynthDefs if name != 'play1' and name != 'play2'])
-suggestions.append(make_suggestion('play', 'function', Renardoo))
+suggestions.extend([make_suggestion(name, 'function', Pulsardo) for name in Pulsardo.SynthDefs if name != 'play1' and name != 'play2'])
+suggestions.append(make_suggestion('play', 'function', Pulsardo))
 
-suggestions.extend([make_suggestion('Scale.' + name, 'constant') for name in Renardoo.Scale.names()])
+suggestions.extend([make_suggestion('Scale.' + name, 'constant') for name in Pulsardo.Scale.names()])
 
 suggestions = [dict(t) for t in set([tuple(d.items()) for d in suggestions])]
 suggestions.sort(key=itemgetter('text'))

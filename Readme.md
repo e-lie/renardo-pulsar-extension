@@ -1,6 +1,6 @@
-# Renardoo interface for Pulsar
+# Pulsardo : Renrado livecoding interface for Pulsar
 
-See [Renardoo's repository](https://github.com/e-lie/renardo) for installation and usage instructions.
+See [Renardo's repository](https://github.com/e-lie/renardo) for installation and usage instructions.
 
 It basically works like the native interface, with some extras:
 
@@ -12,7 +12,7 @@ It basically works like the native interface, with some extras:
 
 This only works in the scope of python files.
 
-**Toggle Renardoo** (`ctrl-alt-f`) in order to start it.
+**Toggle Pulsardo** (`ctrl-alt-f`) in order to start it.
 
 ## Key bindings
 

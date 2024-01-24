@@ -3,7 +3,7 @@ import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
 import { EventEmitter } from 'events';
 import { Logger } from './logging';
 
-export class Renardoo extends EventEmitter {
+export class Pulsardo extends EventEmitter {
 	childProcess?: ChildProcessWithoutNullStreams;
 	logger?: Logger;
 
@@ -13,9 +13,9 @@ export class Renardoo extends EventEmitter {
 		this.logger = logger;
 
 		const pythonPath =
-			(atom.config.get('renardoo.pythonPath') as string) || 'python';
+			(atom.config.get('pulsardo.pythonPath') as string) || 'python';
 		const samplesDirectory = atom.config.get(
-			'renardoo.samplesDirectory'
+			'pulsardo.samplesDirectory'
 		) as string;
 
 		let command = ['-m', 'renardo', '--pipe'];
@@ -29,7 +29,7 @@ export class Renardoo extends EventEmitter {
 			this.childProcess = spawn(pythonPath, command, {
 				env: {
 					...process.env,
-					SC3_PLUGINS: (atom.config.get('renardoo.useSC3Plugins') as boolean)
+					SC3_PLUGINS: (atom.config.get('pulsardo.useSC3Plugins') as boolean)
 						? '1'
 						: undefined,
 				},
@@ -46,7 +46,7 @@ export class Renardoo extends EventEmitter {
 			this.childProcess.on('error', (err: Error & { code?: unknown }) => {
 				if (err.code === 'ENOENT') {
 					logger?.service(
-						`Python was not found. Check that you have Python installed. You may need to give the full path to the Python executable in the Renardoo package's settings.`,
+						`Python was not found. Check that you have Python installed. You may need to give the full path to the Python executable in the Pulsardo package's settings.`,
 						true
 					);
 				}
@@ -55,16 +55,16 @@ export class Renardoo extends EventEmitter {
 
 			this.childProcess.on('close', (code) => {
 				if (code) {
-					logger?.service(`Renardoo has exited with code ${code}.`, true);
+					logger?.service(`Pulsardo has exited with code ${code}.`, true);
 				} else {
-					logger?.service('Renardoo has stopped.', false);
+					logger?.service('Pulsardo has stopped.', false);
 				}
 
 				this.childProcess = undefined;
 				this.emit('stop');
 			});
 
-			logger?.service('Renardoo has started.', false);
+			logger?.service('Pulsardo has started.', false);
 		} catch (err: unknown) {
 			if (err instanceof Error) {
 				logger?.service(err.toString(), true);
@@ -165,7 +165,7 @@ export class Renardoo extends EventEmitter {
 
 		const marker = editor.markBufferRange(range);
 		editor.decorateMarker(marker, {
-			class: 'renardoo-flash',
+			class: 'pulsardo-flash',
 			type: 'highlight',
 		});
 		setTimeout(() => {
