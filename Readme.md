@@ -1,4 +1,4 @@
-# Pulsardo : Renrado livecoding interface for Pulsar
+# Pulsardo : Renardo livecoding interface for Pulsar
 
 See [Renardo's repository](https://github.com/e-lie/renardo) for installation and usage instructions.
 
