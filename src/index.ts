@@ -65,7 +65,7 @@ export const config = {
 	renardoLaunchArguments: {
 		default: '--pipe',
 		description:
-			'Arguments to start renardo (pipe mode) :\n"--pipe" if you use renardo(.exe) package\nor "-m renardo --pipe" to use as python package.',
+			'Arguments to start renardo (pipe mode) comma separated :\n"--pipe" if you use renardo(.exe) package\nor "-m,renardo,--pipe" to use as python package.',
 		type: 'string',
 	},
 	samplesDirectory: {
