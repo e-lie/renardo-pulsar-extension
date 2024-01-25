@@ -12,21 +12,23 @@ export class Pulsardo extends EventEmitter {
 
 		this.logger = logger;
 
-		const pythonPath =
-			(atom.config.get('pulsardo.pythonPath') as string) || 'python';
+		const executable =
+			(atom.config.get('pulsardo.renardoExecutablePath') as string) || 'python';
+
 		const samplesDirectory = atom.config.get(
 			'pulsardo.samplesDirectory'
 		) as string;
 
-		let command = ['-m', 'renardo', '--pipe'];
+		let argumentString = atom.config.get('pulsardo.renardoLaunchArguments') as string;
+		let argumentArray: string[] = argumentString.split(",");
 
 		if (samplesDirectory !== '') {
 			logger?.service(`Using samples from ${samplesDirectory}.`, false);
-			command = command.concat(['-d', samplesDirectory]);
+			argumentString = argumentString.concat(' -d ').concat(samplesDirectory);
 		}
 
 		try {
-			this.childProcess = spawn(pythonPath, command, {
+			this.childProcess = spawn(executable, argumentArray, {
 				env: {
 					...process.env,
 					SC3_PLUGINS: (atom.config.get('pulsardo.useSC3Plugins') as boolean)

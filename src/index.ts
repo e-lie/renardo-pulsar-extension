@@ -56,10 +56,16 @@ export const config = {
 		},
 		type: 'object',
 	},
-	pythonPath: {
+	renardoExecutablePath: {
 		default: '',
 		description:
-			'Leave empty to use python from the PATH environment variable.',
+			'If you use packaged renardo/renardo.exe binary give its path here.\nIf you use renardo installed with pip/pipx point to the Python binary (system or virtualenv) where you installed it.\n Default to system Python.',
+		type: 'string',
+	},
+	renardoLaunchArguments: {
+		default: '--pipe',
+		description:
+			'Arguments to start renardo (pipe mode) :\n"--pipe" if you use renardo(.exe) package\nor "-m renardo --pipe" to use as python package.',
 		type: 'string',
 	},
 	samplesDirectory: {
