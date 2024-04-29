@@ -19,20 +19,21 @@ export class Pulsardo extends EventEmitter {
 		this.wsClient = new WebSocketClient();
 		this.logger = logger;
 		
-		const executable =
-			(atom.config.get('pulsardo.renardoExecutablePath') as string) || 'python';
+		// const executable =  (atom.config.get('pulsardo.renardoExecutablePath') as string) || 'python';
 
-		const samplesDirectory = atom.config.get(
-			'pulsardo.samplesDirectory'
-		) as string;
+		const wsServerAddress =  (atom.config.get('pulsardo.renardoWebSocketAddress') as string) || 'localhost:15678';
 
-		let argumentString = atom.config.get('pulsardo.renardoLaunchArguments') as string;
-		let argumentArray: string[] = argumentString.split(",");
+		// const samplesDirectory = atom.config.get(
+			// 'pulsardo.samplesDirectory'
+		// ) as string;
 
-		if (samplesDirectory !== '') {
-			logger?.service(`Using samples from ${samplesDirectory}.`, false);
-			argumentString = argumentString.concat(' -d ').concat(samplesDirectory);
-		}
+		// let argumentString = atom.config.get('pulsardo.renardoLaunchArguments') as string;
+		// let argumentArray: string[] = argumentString.split(",");
+
+		// if (samplesDirectory !== '') {
+			// logger?.service(`Using samples from ${samplesDirectory}.`, false);
+			// argumentString = argumentString.concat(' -d ').concat(samplesDirectory);
+		// }
 
 		try {
 			// this.childProcess = spawn(executable, argumentArray, {
@@ -108,7 +109,7 @@ export class Pulsardo extends EventEmitter {
 				});
 			});
 
-			this.wsClient.connect('ws://localhost:8765'); // Replace with your WebSocket server URL
+			this.wsClient.connect("ws://" + wsServerAddress); // Replace with your WebSocket server URL
 
 
 		} catch (err: unknown) {
