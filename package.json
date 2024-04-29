@@ -27,10 +27,13 @@
       }
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "websocket": "^1.0.34"
+  },
   "devDependencies": {
     "@types/atom": "^1.40.6",
     "@types/node": "^14.14.20",
+    "@types/websocket": "^1.0.10",
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
     "babel-eslint": "^10.1.0",
