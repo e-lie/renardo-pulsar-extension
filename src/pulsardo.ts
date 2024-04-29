@@ -2,16 +2,23 @@ import { RangeCompatible } from 'atom';
 import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
 import { EventEmitter } from 'events';
 import { Logger } from './logging';
+import { client as WebSocketClient } from 'websocket';
+import { connection as WebSocketConnection } from 'websocket';
+
+// let wsConnection: WebSocketConnection;
 
 export class Pulsardo extends EventEmitter {
 	childProcess?: ChildProcessWithoutNullStreams;
 	logger?: Logger;
+	wsClient?: WebSocketClient;
+	wsConnection?: WebSocketConnection;
 
 	constructor(logger?: Logger) {
 		super();
 
+		this.wsClient = new WebSocketClient();
 		this.logger = logger;
-
+		
 		const executable =
 			(atom.config.get('pulsardo.renardoExecutablePath') as string) || 'python';
 
@@ -28,45 +35,82 @@ export class Pulsardo extends EventEmitter {
 		}
 
 		try {
-			this.childProcess = spawn(executable, argumentArray, {
-				env: {
-					...process.env,
-					SC3_PLUGINS: (atom.config.get('pulsardo.useSC3Plugins') as boolean)
-						? '1'
-						: undefined,
-				},
-			});
+			// this.childProcess = spawn(executable, argumentArray, {
+			// 	env: {
+			// 		...process.env,
+			// 		SC3_PLUGINS: (atom.config.get('pulsardo.useSC3Plugins') as boolean)
+			// 			? '1'
+			// 			: undefined,
+			// 	},
+			// });
 
-			this.childProcess.stdout.on('data', (data) => {
-				logger?.stdout(data);
-			});
+			// this.childProcess.stdout.on('data', (data) => {
+			// 	logger?.stdout(data);
+			// });
 
-			this.childProcess.stderr.on('data', (data) => {
-				logger?.stderr(data);
-			});
+			// this.childProcess.stderr.on('data', (data) => {
+			// 	logger?.stderr(data);
+			// });
 
-			this.childProcess.on('error', (err: Error & { code?: unknown }) => {
-				if (err.code === 'ENOENT') {
-					logger?.service(
-						`Python was not found. Check that you have Python installed. You may need to give the full path to the Python executable in the Pulsardo package's settings.`,
-						true
-					);
-				}
-				logger?.service(err.toString(), true);
-			});
+			// this.childProcess.on('error', (err: Error & { code?: unknown }) => {
+			// 	if (err.code === 'ENOENT') {
+			// 		logger?.service(
+			// 			`Python was not found. Check that you have Python installed. You may need to give the full path to the Python executable in the Pulsardo package's settings.`,
+			// 			true
+			// 		);
+			// 	}
+			// 	logger?.service(err.toString(), true);
+			// });
 
-			this.childProcess.on('close', (code) => {
-				if (code) {
-					logger?.service(`Pulsardo has exited with code ${code}.`, true);
-				} else {
-					logger?.service('Pulsardo has stopped.', false);
-				}
+			// this.childProcess.on('close', (code) => {
+			// 	if (code) {
+			// 		logger?.service(`Pulsardo has exited with code ${code}.`, true);
+			// 	} else {
+			// 		logger?.service('Pulsardo has stopped.', false);
+			// 	}
 
-				this.childProcess = undefined;
+			// 	this.childProcess = undefined;
+			// 	this.emit('stop');
+			// });
+
+			logger?.service('Pulsardo has started.', false);
+
+			this.wsClient.on('connectFailed', (error) => {
+				logger?.service("WebSocket connection failed: " + error.toString(), true);
+				logger?.service("Ensure Renardo websocket server is started and listening on the right address and port.", true);
+				logger?.service('Pulsardo has stopped.', false);
 				this.emit('stop');
 			});
 
-			logger?.service('Pulsardo has started.', false);
+			this.wsClient.on('connect', (connection) => {
+				logger?.service('Connected to Renardo websocket server.', false);
+				
+				this.wsConnection = connection;
+
+				connection.on('error', (error) => {
+					logger?.service("WebSocket connection error: " + error.toString(), true);
+					logger?.service('Pulsardo has stopped.', false);
+					this.wsConnection = undefined;
+					this.emit('stop');
+				});
+				
+				connection.on('close', () => {
+					logger?.service('WebSocket connection closed', false);
+					logger?.service('Pulsardo has stopped.', false);
+					this.wsConnection = undefined;
+					this.emit('stop');
+				});
+				
+				connection.on('message', function(message) {
+					if (message.type === 'utf8') {
+						logger?.service('Received message from server: ' + message.utf8Data, false);
+					}
+				});
+			});
+
+			this.wsClient.connect('ws://localhost:8765'); // Replace with your WebSocket server URL
+
+
 		} catch (err: unknown) {
 			if (err instanceof Error) {
 				logger?.service(err.toString(), true);
@@ -77,7 +121,11 @@ export class Pulsardo extends EventEmitter {
 	}
 
 	dispose() {
-		this.childProcess?.kill();
+		this.wsConnection?.sendUTF('Clock.clear()');
+		this.wsConnection = undefined;
+		this.logger?.service('Pulsardo has stopped.', false);
+		this.emit('stop');
+		//this.childProcess?.kill();
 	}
 
 	clearClock() {
@@ -121,13 +169,19 @@ export class Pulsardo extends EventEmitter {
 	}
 
 	evaluateCode(code: string) {
-		if (!this.childProcess) {
-			return;
-		}
+		//if (!this.childProcess) {
+		//	return;
+		//}
 
-		const stdin = this.childProcess.stdin;
-		stdin.write(code);
-		stdin.write('\n\n');
+		//const stdin = this.childProcess.stdin;
+		//stdin.write(code);
+		//stdin.write('\n\n');
+
+		if (this.wsConnection && this.wsConnection.connected) {
+			this.wsConnection.sendUTF(code);
+		} else {
+			this.logger?.service('WebSocket connection is not established.', true);
+		}
 
 		this.logger?.stdin(code);
 	}
